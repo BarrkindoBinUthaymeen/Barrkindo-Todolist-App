@@ -1,140 +1,177 @@
+/* --- Global Styles and Typography --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
 :root {
-    --primary-color: #1c1d20;
-    --secondary-color: #4a4d57;
-    --background-color: #101114;
-    --accent-color: #00ffc4;
-    --text-color: #f9f9f9;
-    --font-family: Tahoma, Geneva, Verdana, sans-serif;
+    --primary-color: #4CAF50; /* Green accent */
+    --secondary-color: #FF5722; /* Red/Orange for delete */
+    --background-color: #f8f9fa;
+    --card-background: #ffffff;
+    --text-color: #333;
+    --border-radius: 8px;
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
-html {
-    color: var(--text-color);
-    font-family: var(--font-family) sans-serif;
-    font-size: 16px;
-}
+
 body {
+    font-family: 'Inter', sans-serif;
     background-color: var(--background-color);
-    padding: 10px;
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    padding: 20px;
 }
+
 h1 {
-    margin-top: 100px;
-    margin-bottom: 40px;
-    font-size: 3rem;
-    font-weight: 800;
-    color: var(--accent-color);
-    text-transform: uppercase;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    font-weight: 700;
     text-align: center;
 }
+
+/* --- Main Wrapper (Card) --- */
 .wrapper {
-    width: 700px;
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-#task {
-    box-sizing: border-box;
     width: 100%;
-    padding: 12px 20px;
-    font: inherit;
-    border: 2px solid var(--secondary-color);
-    border-radius: 1000px;
-    background: none;
-    color: var(--text-color);
-    caret-color: var(--accent-color);
+    max-width: 600px;
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    padding: 30px;
 }
+
+/* --- Form and Input Styles --- */
+form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+#task {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
 #task:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
     outline: none;
 }
-form {
-    position: relative;
 
-}
-#add-task-btn {
-    position: absolute;
-    right: 0;
-    top: 0;
-    background-color: var(--accent-color);
-    height: 100%;
-    padding: 0 30px;
-    border: none;
-    border-radius: 0 1000px 1000px 0;
-    font: inherit;
-    color: var(--background-color);
-    font-weight: 800;
+/* --- Button Base Styles --- */
+button {
     cursor: pointer;
+    font-weight: 600;
+    padding: 10px 15px;
+    border: none;
+    border-radius: var(--border-radius);
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    font-size: 1rem;
 }
 
+/* --- Add/Save Task Button --- */
+#add-task-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#add-task-btn:hover {
+    background-color: #43a047; /* Darker green */
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Task List Container --- */
 .list-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin: 5px 0;
-    border-radius: 0 1000px 1000px 0;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
 }
 
 #task-list {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin: 20px 0;
-    padding: 10px 20px;
-    flex-grow: 1;
- }
+    list-style: none;
+    padding: 0;
+}
 
-li {
+/* --- Individual List Item Styles --- */
+#task-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 15px 0;
-    font-size: 1.2rem;
-    flex-grow: 1;
+    border-bottom: 1px solid #eee;
+    font-size: 1.1rem;
 }
 
+#task-list li:last-child {
+    border-bottom: none;
+}
+
+/* Grouping action buttons */
+#task-list li .btn {
+    margin-left: 10px;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Edit Button Style */
 .edit-task {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    background-color: blue;
-    color: var(--text-color);
-    cursor: pointer;
-    width: 80px;
-    margin-top: 17px;
-    margin-bottom: 17px;
-    border: none;
-    outline: none;
-    border-radius: 30px;
-    font: inherit;
-    padding: 0 20px;
-}
-.edit-task:hover {
-    background-color: white;
-    color: blue;
-
-}
-
-.delete-task {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    background-color: red;
+    background-color: #2196F3; /* Blue */
     color: white;
-    cursor: pointer;
-    width: 80px;
-    border: none;
-    outline: none;
-    border-radius: 30px;
-    font: inherit;
-    padding: 0 10px;
 }
+
+.edit-task:hover {
+    background-color: #1e88e5;
+}
+
+/* Delete Button Style */
+.delete-task {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
 .delete-task:hover {
-    background-color: white;
-    color: red;
+    background-color: #e64a19; /* Darker orange */
+}
+
+/* --- Responsive Adjustments (Mobile First) --- */
+@media (max-width: 550px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .wrapper {
+        padding: 20px 15px;
+    }
+
+    /* Stack form elements vertically on small screens */
+    form {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    #add-task-btn {
+        width: 100%; /* Full width button */
+    }
+
+    #task-list li {
+        flex-wrap: wrap; /* Allow wrapping of text/buttons */
+        padding: 12px 0;
+    }
+
+    /* Adjust button grouping on small screens */
+    #task-list li button {
+        margin-top: 5px;
+        margin-left: 0;
+    }
 }
